@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { useNavigate } from "react-router-dom";
 
 // Mock data for dashboard
 const stats = [
@@ -43,6 +44,8 @@ const trainingModules = [
 ];
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -207,13 +210,13 @@ const Dashboard = () => {
                     </p>
                   </div>
                   <div className="flex gap-3">
-                    <Button variant="heroOutline">
+                    <Button variant="heroOutline" onClick={() => navigate("/")}>
                       <Search className="w-4 h-4" />
                       Browse Scenarios
                     </Button>
-                    <Button variant="hero">
+                    <Button variant="hero" onClick={() => navigate("/training?scenario=fire")}>
                       <Play className="w-4 h-4" />
-                      Start AR Session
+                      Start Training
                     </Button>
                   </div>
                 </div>

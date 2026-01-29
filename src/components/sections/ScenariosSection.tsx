@@ -3,6 +3,7 @@ import { ArrowRight, Flame, Zap, Beaker, HardHat, Building, AlertTriangle } from
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const scenarios = [
   {
@@ -14,6 +15,7 @@ const scenarios = [
     duration: "15 min",
     environment: "Industrial",
     color: "destructive",
+    scenarioKey: "fire",
   },
   {
     id: 2,
@@ -24,6 +26,7 @@ const scenarios = [
     duration: "20 min",
     environment: "Manufacturing",
     color: "warning",
+    scenarioKey: "electrical",
   },
   {
     id: 3,
@@ -34,6 +37,7 @@ const scenarios = [
     duration: "25 min",
     environment: "Laboratory",
     color: "accent",
+    scenarioKey: "chemical",
   },
   {
     id: 4,
@@ -44,6 +48,7 @@ const scenarios = [
     duration: "30 min",
     environment: "Construction",
     color: "primary",
+    scenarioKey: "default",
   },
   {
     id: 5,
@@ -54,6 +59,7 @@ const scenarios = [
     duration: "12 min",
     environment: "Office",
     color: "success",
+    scenarioKey: "default",
   },
   {
     id: 6,
@@ -64,6 +70,7 @@ const scenarios = [
     duration: "35 min",
     environment: "Industrial",
     color: "destructive",
+    scenarioKey: "default",
   },
 ];
 
@@ -75,6 +82,8 @@ const difficultyColors = {
 } as const;
 
 export function ScenariosSection() {
+  const navigate = useNavigate();
+  
   return (
     <section id="scenarios" className="py-24 bg-[hsl(222_47%_8%)] relative overflow-hidden">
       {/* Background */}
@@ -133,7 +142,11 @@ export function ScenariosSection() {
                     <span>⏱ {scenario.duration}</span>
                     <span>📍 {scenario.environment}</span>
                   </div>
-                  <Button variant="ghost" className="w-full group-hover:bg-accent/10 group-hover:text-accent">
+                  <Button 
+                    variant="ghost" 
+                    className="w-full group-hover:bg-accent/10 group-hover:text-accent"
+                    onClick={() => navigate(`/training?scenario=${scenario.scenarioKey}`)}
+                  >
                     Start Training
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>

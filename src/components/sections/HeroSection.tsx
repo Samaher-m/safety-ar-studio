@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Play, Shield, Zap, Users } from "lucide-react";
+import { ArrowRight, Play, Shield, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-ar-safety.jpg";
 
 export function HeroSection() {
+  const navigate = useNavigate();
+  
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background via-background to-[hsl(222_47%_8%)]">
       {/* Background Effects */}
@@ -63,13 +66,13 @@ export function HeroSection() {
               transition={{ delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Button variant="hero" size="xl" className="group">
-                Start Free Trial
+              <Button variant="hero" size="xl" className="group" onClick={() => navigate("/training?scenario=fire")}>
+                Start Training
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="heroOutline" size="xl" className="group">
+              <Button variant="heroOutline" size="xl" className="group" onClick={() => navigate("/dashboard")}>
                 <Play className="w-5 h-5" />
-                Watch Demo
+                View Dashboard
               </Button>
             </motion.div>
 
