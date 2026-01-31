@@ -194,21 +194,21 @@ export const CompletionModal = ({
                 transition={{ delay: 0.8 }}
                 className="flex gap-3"
               >
-                <Button
+              <Button
                   variant="heroOutline"
-                  className="flex-1"
-                  onClick={onRetry}
-                >
-                  <RotateCcw className="w-4 h-4" />
-                  Retry Training
-                </Button>
-                <Button
-                  variant="hero"
                   className="flex-1"
                   onClick={() => navigate("/dashboard")}
                 >
                   <Home className="w-4 h-4" />
                   Go to Dashboard
+                </Button>
+                <Button
+                  variant="hero"
+                  className="flex-1"
+                  onClick={onRetry}
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  Return to Training
                 </Button>
               </motion.div>
             </div>
