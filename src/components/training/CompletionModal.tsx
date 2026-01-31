@@ -205,7 +205,7 @@ export const CompletionModal = ({
                 <Button
                   variant="hero"
                   className="flex-1"
-                  onClick={onRetry}
+                  onClick={() => navigate("/training")}
                 >
                   <RotateCcw className="w-4 h-4" />
                   Return to Training
