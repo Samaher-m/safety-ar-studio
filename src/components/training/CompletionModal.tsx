@@ -64,7 +64,7 @@ export const CompletionModal = ({
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="relative w-full max-w-lg bg-[hsl(222_47%_13%)] rounded-2xl border border-border overflow-hidden"
+            className="relative w-full max-w-md bg-[hsl(222_47%_13%)] rounded-2xl border border-border overflow-hidden max-h-[90vh] overflow-y-auto"
           >
             {/* Success animation background */}
             <div className="absolute inset-0 overflow-hidden">
@@ -76,15 +76,15 @@ export const CompletionModal = ({
               />
             </div>
 
-            <div className="relative p-6">
+            <div className="relative p-4 sm:p-5">
               {/* Trophy icon */}
               <motion.div
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", delay: 0.2, stiffness: 200 }}
-                className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center shadow-[0_0_40px_hsl(25_95%_53%/0.4)]"
+                className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center shadow-[0_0_30px_hsl(25_95%_53%/0.4)]"
               >
-                <Trophy className="w-10 h-10 text-primary-foreground" />
+                <Trophy className="w-8 h-8 text-primary-foreground" />
               </motion.div>
 
               {/* Title */}
@@ -92,12 +92,12 @@ export const CompletionModal = ({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-center mb-6"
+                className="text-center mb-4"
               >
-                <h2 className="font-display text-2xl font-bold text-foreground mb-1">
+                <h2 className="font-display text-xl font-bold text-foreground mb-1">
                   Training Complete!
                 </h2>
-                <p className="text-muted-foreground">{scenarioTitle}</p>
+                <p className="text-sm text-muted-foreground">{scenarioTitle}</p>
               </motion.div>
 
               {/* Stars */}
@@ -105,7 +105,7 @@ export const CompletionModal = ({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="flex justify-center gap-2 mb-6"
+                className="flex justify-center gap-2 mb-4"
               >
                 {[1, 2, 3].map((star) => (
                   <motion.div
@@ -118,7 +118,7 @@ export const CompletionModal = ({
                     transition={{ delay: 0.4 + star * 0.1, type: "spring" }}
                   >
                     <Star
-                      className={`w-8 h-8 ${
+                      className={`w-6 h-6 ${
                         star <= getStars(score)
                           ? "text-warning fill-warning"
                           : "text-muted"
@@ -133,12 +133,12 @@ export const CompletionModal = ({
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 }}
-                className="text-center mb-6"
+                className="text-center mb-4"
               >
-                <div className={`font-display text-5xl font-bold ${getScoreColor(score)}`}>
+                <div className={`font-display text-4xl font-bold ${getScoreColor(score)}`}>
                   {score}%
                 </div>
-                <Badge variant="glass" className="mt-2">
+                <Badge variant="glass" className="mt-1 text-xs">
                   {getScoreLabel(score)}
                 </Badge>
               </motion.div>
@@ -148,16 +148,16 @@ export const CompletionModal = ({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="grid grid-cols-2 gap-4 mb-6"
+                className="grid grid-cols-2 gap-3 mb-4"
               >
-                <div className="bg-[hsl(222_47%_16%)] rounded-lg p-4 text-center">
-                  <Clock className="w-5 h-5 text-accent mx-auto mb-2" />
-                  <div className="text-lg font-semibold text-foreground">{timeSpent}</div>
+                <div className="bg-[hsl(222_47%_16%)] rounded-lg p-3 text-center">
+                  <Clock className="w-4 h-4 text-accent mx-auto mb-1" />
+                  <div className="text-base font-semibold text-foreground">{timeSpent}</div>
                   <div className="text-xs text-muted-foreground">Time Spent</div>
                 </div>
-                <div className="bg-[hsl(222_47%_16%)] rounded-lg p-4 text-center">
-                  <Target className="w-5 h-5 text-success mx-auto mb-2" />
-                  <div className="text-lg font-semibold text-foreground">
+                <div className="bg-[hsl(222_47%_16%)] rounded-lg p-3 text-center">
+                  <Target className="w-4 h-4 text-success mx-auto mb-1" />
+                  <div className="text-base font-semibold text-foreground">
                     {stepsCompleted}/{totalSteps}
                   </div>
                   <div className="text-xs text-muted-foreground">Steps Completed</div>
@@ -169,18 +169,18 @@ export const CompletionModal = ({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
-                className="bg-[hsl(222_47%_16%)] rounded-lg p-4 mb-6"
+                className="bg-[hsl(222_47%_16%)] rounded-lg p-3 mb-4"
               >
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-2">
                   <Lightbulb className="w-4 h-4 text-accent" />
-                  <span className="text-sm font-medium text-foreground">
+                  <span className="text-xs font-medium text-foreground">
                     AI Safety Recommendations
                   </span>
                 </div>
-                <ul className="space-y-2">
-                  {recommendations.map((rec, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-4 h-4 text-success flex-shrink-0 mt-0.5" />
+                <ul className="space-y-1.5">
+                  {recommendations.slice(0, 3).map((rec, index) => (
+                    <li key={index} className="flex items-start gap-2 text-xs text-muted-foreground">
+                      <CheckCircle className="w-3 h-3 text-success flex-shrink-0 mt-0.5" />
                       {rec}
                     </li>
                   ))}
