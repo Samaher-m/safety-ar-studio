@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 import { TrainingHeader } from "@/components/training/TrainingHeader";
 import { VideoPlayer } from "@/components/training/VideoPlayer";
-import { InstructionPanel, TrainingStep } from "@/components/training/InstructionPanel";
+import { TrainingStep } from "@/components/training/InstructionPanel";
 import { ActionControls } from "@/components/training/ActionControls";
 import { CompletionModal } from "@/components/training/CompletionModal";
 
@@ -327,12 +327,12 @@ const Training = () => {
       />
 
       <main className="container mx-auto px-4 md:px-6 py-6">
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="max-w-4xl mx-auto">
           {/* Main Video Area */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="lg:col-span-2 space-y-4"
+            className="space-y-4"
           >
             <VideoPlayer
               isPlaying={isPlaying}
@@ -351,26 +351,6 @@ const Training = () => {
               onNextStep={handleNextStep}
               onRepeatScenario={handleRepeatScenario}
               onMarkComplete={handleMarkComplete}
-            />
-          </motion.div>
-
-          {/* Instruction Panel */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <InstructionPanel
-              steps={steps}
-              onStepClick={(stepId) => {
-                if (stepId <= currentStep) {
-                  setSteps(prev => prev.map(step => ({
-                    ...step,
-                    isCurrent: step.id === stepId
-                  })));
-                  setCurrentStep(stepId);
-                }
-              }}
             />
           </motion.div>
         </div>
