@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Target, ArrowLeft } from "lucide-react";
+import { Clock, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -58,32 +58,10 @@ export const TrainingHeader = ({
                   <Clock className="w-4 h-4" />
                   {duration}
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <Target className="w-4 h-4" />
-                  Step {currentStep} of {totalSteps}
-                </span>
               </div>
             </div>
           </div>
 
-          {/* Progress indicator */}
-          <div className="hidden md:flex items-center gap-2">
-            {Array.from({ length: totalSteps }).map((_, index) => (
-              <motion.div
-                key={index}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index < currentStep
-                    ? "bg-success shadow-[0_0_10px_hsl(142_71%_45%/0.5)]"
-                    : index === currentStep
-                    ? "bg-primary shadow-[0_0_10px_hsl(25_95%_53%/0.5)]"
-                    : "bg-muted"
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </motion.header>
